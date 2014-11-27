@@ -58,8 +58,8 @@
     "geometry": {
         "type": "Point",
         "coordinates": [
-           -75.209,
-           19.908
+           19.908,
+           -75.209
         ]
     },
     "properties": {
