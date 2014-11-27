@@ -79,4 +79,55 @@ Importowanie ciąg dalszy. Poszedłem do kuchni na chwilę...
 ![WTczas](screenshots/WTczas.png)
 ... wracam, a tu już koniec. Zaimportowało w rekordowym czasie 9 minut i 49 sekund. Zasługa niewątpliwie dużej kompatybilności z wieloma procesorami oraz dość dużą ilością RAM, mimo że na poprzednich zrzutach nie było widać dużej ilości zużycia tych zasobów. Dowodzi to o dużej efektywności WiredTigera.
 
+### PostgreSQL
+
+Stworzyłem tabele i zaimportowałem dane za pomocą komendy: 
+~~~
+postgres=# CREATE TABLE trains (id int, title varchar(1000), body varchar(10485760), tags varchar(1000));
+postgres=# COPY trains FROM 'C:\NoSQL\PostgreSQL\9.3\bin\Train.csv' DELIMITER ',' CSV HEADER;
+~~~
+
+Czas importu wyniósł 43 minut 22 sekund.
+
+## 1b
+
+### MongoDB 2.6.5 i 2.8.0 rc0
+
+Żeby śledzić czas działania zliczania ustawiłem wbudowany profiler i użyłem funkcji count():
+~~~
+>db.setProfilingLevel(2)
+{ "was": 0, "slowms" : 100, "ok": 1}} 
+>db.trains.count()
+~~~
+Podgląd do kolekcji system.profile dał mi czas wykonania count'a.
+
+~~~
+>db.system.profile.find().limit(10).sort( { ts : -1 } ).pretty()
+~~~
+
+Dla 2.6.5 responseLength wyniósł 44ms, dla 2.8.0 122ms a dla 2.8.0 z WiredTiger 142ms.
+
+### PostgreSQL
+
+
+
+### Tabelka i podsumowanie
+
+|        | MongoDB 2.6.5 | MongoDB 2.8.0 | Mongo DB WiredTiger | PostgreSQL |
+|--------|---------------|---------------|---------------------|------------|
+| Import | 29min 22sec   | 32min 15sec   | 9min 49sec          |            |
+| Count  | 44 ms         | 122 ms        | 142 ms              |            |
+
+## 1c
+
+Snippet kodu napisany w javie do komunikacji z MongoDB znajduję się [tutaj](https://github.com/jnowicki/NoSQL-JN/blob/master/1c.java).
+
+## 1d
+
+
+
+
+
+
+
 
