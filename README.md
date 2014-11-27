@@ -120,9 +120,19 @@ Dla 2.6.5 responseLength wyniósł 44ms, dla 2.8.0 122ms a dla 2.8.0 z WiredTige
 
 ## 1c
 
-Snippet kodu napisany w javie do komunikacji z MongoDB znajduję się [tutaj](https://github.com/jnowicki/NoSQL-JN/blob/master/1c.java).
+Snippet kodu napisany w javie do operacji w MongoDB znajduję się [tutaj](https://github.com/jnowicki/NoSQL-JN/blob/master/1c.java).
 
 ## 1d
+
+[Największe zamorskie bazy wojskowe USA](maps/locMap.geojson)
+
+Bazy wojskowe znajdujące się w azji:
+
+~~~
+db.bases.find({ loc:{ $geoWithin: { $polygon: [[26.183423,39.377432],[48.331860,44.222196],[51.408032,69.166769],[99.381494,77.043528],[154.343901,68.276608],[153.289213,39.111101],[80.515777,0.722614],[42.091626,13.251471],[25.983423,40.053501],[26.183423,39.377432]]}}})
+~~~
+
+
 
 
 
