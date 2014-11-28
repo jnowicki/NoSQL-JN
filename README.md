@@ -109,14 +109,23 @@ Dla 2.6.5 responseLength wyniósł 44ms, dla 2.8.0 122ms a dla 2.8.0 z WiredTige
 
 ### PostgreSQL
 
+W postgresie użyłem zapytania:
 
+~~~
+postgres=# SELECT count (*) FROM tra;
+---------
+ 6034195
+(1 row)
+~~~
+
+zapytanie trwało 1 minute 11 sekund.
 
 ### Tabelka i podsumowanie
 
-|        | MongoDB 2.6.5 | MongoDB 2.8.0 | Mongo DB WiredTiger | PostgreSQL |
-|--------|---------------|---------------|---------------------|------------|
-| Import | 29min 22sec   | 32min 15sec   | 9min 49sec          |            |
-| Count  | 44 ms         | 122 ms        | 142 ms              |            |
+|        | MongoDB 2.6.5 | MongoDB 2.8.0 | Mongo DB WiredTiger | PostgreSQL  |
+|--------|---------------|---------------|---------------------|-------------|
+| Import | 29min 22sec   | 32min 15sec   | 9min 49sec          | 43min 22sec |
+| Count  | 44 ms         | 122 ms        | 142 ms              | 1min 11sec  |
 
 ## 1c
 
