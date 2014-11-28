@@ -33,10 +33,7 @@ $sw.Stop()
 $sw.Elapsed
 ~~~
 
-Zrzuty ekranu z monitorem systemu oraz terminalem z serverem i klientem:
-
-![Monitor2.6](screenshots/mongo2.6monitor.png)
-Zużycie tuż po imporcie. Pamięć RAM w większości zajęta przez proces.
+Zrzuty ekranu terminalu servera i klienta.
 
 ![Czas2.6](screenshots/mongo2.6czas.png )
 29 minut. Dość długo.
@@ -45,7 +42,7 @@ Zużycie tuż po imporcie. Pamięć RAM w większości zajęta przez proces.
 
 Tutaj również skorzystałem z tego samego polecenia. Nic nie trzeba było zmieniać, ponieważ tryb składowania danych MMAP jest domyślny w tej wersji mongo.
 
-zrzuty ekranu:
+zrzuty ekranu wraz z monitorem zasobów:
 
 ![1MMAP](screenshots/1MMAP.png)
 Początek importu.
