@@ -97,7 +97,10 @@ Czas importu wyniósł 43 minut 22 sekund.
 >db.setProfilingLevel(2)
 { "was": 0, "slowms" : 100, "ok": 1}} 
 >db.trains.count()
+6034196
 ~~~
+Dygresja: Policzyło mi o jeden rekord więcej niż powinno, ponieważ w pliku CSV na końcu znalazła się pusta linia. Za późno zauważyłem pomyłkę i już nie chciało mi się poprawionego pliku CSV importować na nowo do mongo, ponieważ by miał mały wpływ na wynik. Poprawiony użyłem dopiero w imporcie do Postgres'a.
+
 Podgląd do kolekcji system.profile dał mi czas wykonania count'a.
 
 ~~~
@@ -105,15 +108,15 @@ Podgląd do kolekcji system.profile dał mi czas wykonania count'a.
 ~~~
 
 2.6.5:
-[2.6countczas](screenshots/2.6countczas.png) </ br>
+![2.6countczas](screenshots/2.6countczas.png) <br />
 48 ms
 
 2.8.0 MMS:
-[MMScountczas](screenshots/MMScountczas.png) </ br>
+![MMScountczas](screenshots/MMScountczas.png) <br />
 44 ms
 
 2.8.0 WiredTiger:
-[WTcountczas](screenshots/WTcountczas.png) </ br>
+![WTcountczas](screenshots/WTcountczas.png) <br />
 58 ms
 
 ### PostgreSQL
