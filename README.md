@@ -90,7 +90,7 @@ Czas importu wyniósł 43 minut 22 sekund.
 
 ## 1b
 
-### MongoDB 2.6.5 i 2.8.0 rc0
+### MongoDB 2.6.5 i 2.8.0 rc0 MMS/WiredTiger
 
 Żeby śledzić czas działania zliczania ustawiłem wbudowany profiler i użyłem funkcji count():
 ~~~
@@ -104,14 +104,24 @@ Podgląd do kolekcji system.profile dał mi czas wykonania count'a.
 >db.system.profile.find().limit(10).sort( { ts : -1 } ).pretty()
 ~~~
 
-Dla 2.6.5 responseLength wyniósł 44ms, dla 2.8.0 122ms a dla 2.8.0 z WiredTiger 142ms.
+2.6.5:
+[2.6countczas](screenshots/2.6countczas.png) </ br>
+48 ms
+
+2.8.0 MMS:
+[MMScountczas](screenshots/MMScountczas.png) </ br>
+44 ms
+
+2.8.0 WiredTiger:
+[WTcountczas](screenshots/WTcountczas.png) </ br>
+58 ms
 
 ### PostgreSQL
 
 W postgresie użyłem zapytania:
 
 ~~~
-postgres=# SELECT count (*) FROM tra;
+postgres=# SELECT count (*) FROM trains;
 ---------
  6034195
 (1 row)
@@ -124,7 +134,7 @@ zapytanie trwało 1 minute 11 sekund.
 |        | MongoDB 2.6.5 | MongoDB 2.8.0 | Mongo DB WiredTiger | PostgreSQL  |
 |--------|---------------|---------------|---------------------|-------------|
 | Import | 29min 22sec   | 32min 15sec   | 9min 49sec          | 43min 22sec |
-| Count  | 44 ms         | 122 ms        | 142 ms              | 1min 11sec  |
+| Count  | 48 ms         | 44 ms         | 58 ms               | 1min 11sec  |
 
 ## 1c
 
