@@ -35,7 +35,9 @@ $sw.Elapsed
 
 Zrzuty ekranu terminalu servera i klienta.
 
-![Czas2.6](screenshots/mongo2.6czas.png )
+![Monitor2.6](screenshots/mongo2.6monitor.png)
+
+![Czas2.6](screenshots/mongo2.6czas.png) <br />
 29 minut. Dość długo.
 
 ### MongoDB 2.8.0 rc0 Storage MMAPv1
@@ -53,7 +55,7 @@ Tutaj wzrosło zużycie pamięci.
 ![3MMAP](screenshots/3MMAP.png)
 Prawie koniec.
 
-![MMAPczas](screenshots/MMAPczas.png)
+![MMAPczas](screenshots/MMAPczas.png)<br />
 32 minuty. 3 minuty dłużej niż MongoDB w wersji 2.6.5. Zaskoczenie lekkie, myślałem że będzie nieznacznie krócej albo tak samo.
 
 ### MongoDB 2.8.0 rc0 Storage WiredTiger
@@ -73,7 +75,7 @@ Zaczynam importowanie.
 ![2WT](screenshots/2WT.png)
 Importowanie ciąg dalszy. Poszedłem do kuchni na chwilę...
 
-![WTczas](screenshots/WTczas.png)
+![WTczas](screenshots/WTczas.png)<br />
 ... wracam, a tu już koniec. Zaimportowało w rekordowym czasie 9 minut i 49 sekund. Zasługa niewątpliwie dużej kompatybilności z wieloma procesorami oraz dość dużą ilością RAM, mimo że na poprzednich zrzutach nie było widać dużej ilości zużycia tych zasobów. Dowodzi to o dużej efektywności WiredTigera.
 
 ### PostgreSQL
