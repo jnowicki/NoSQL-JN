@@ -86,7 +86,15 @@ postgres=# CREATE TABLE trains (id int, title varchar(1000), body varchar(104857
 postgres=# COPY trains FROM 'C:\NoSQL\PostgreSQL\9.3\bin\Train.csv' DELIMITER ',' CSV HEADER;
 ~~~
 
-Czas importu wyniósł 43 minut 22 sekund.
+Pomiar czasu uzyskałem za pomocą komendy /timing. Przed importowaniem musiałem również zastosować komende /encoding UTF8, ponieważ kodowanie pliku było inne niż te w psql.exe.
+
+![2PG](screenshots/2PG.png) <br />
+Początek importowania. Pamięci RAM niewiele co zużyło.
+
+![3PG](screenshots/3PG.png) <br />
+Koniec.
+
+Czas importu wyniósł 12 minut 6 sekund.
 
 ## 1b
 
@@ -123,25 +131,30 @@ Podgląd do kolekcji system.profile dał mi czas wykonania count'a.
 
 W postgresie użyłem zapytania:
 
-~~~
-postgres=# SELECT count (*) FROM trains;
----------
- 6034195
-(1 row)
-~~~
+![PGcountczas](screenshots/PGcountczas.png) <br />
 
-zapytanie trwało 1 minute 11 sekund.
+Pomiar czasu uzyskałem tak samo jak przy imporcie. Zapytanie trwało 5 minut 13 sekund. O wiele więcej niż przy MongoDB w każdej wersji.
 
 ### Tabelka i podsumowanie
 
 |        | MongoDB 2.6.5 | MongoDB 2.8.0 | Mongo DB WiredTiger | PostgreSQL  |
 |--------|---------------|---------------|---------------------|-------------|
-| Import | 29min 22sec   | 32min 15sec   | 9min 49sec          | 43min 22sec |
-| Count  | 48 ms         | 44 ms         | 58 ms               | 1min 11sec  |
+| Import | 29min 22sec   | 32min 15sec   | 9min 49sec          | 12min 6sec |
+| Count  | 48 ms         | 44 ms         | 58 ms               | 5min 13sec  |
 
 ## 1c
 
-Snippet kodu napisany w javie do operacji w MongoDB znajduję się [tutaj](https://github.com/jnowicki/NoSQL-JN/blob/master/1c.java).
+Snippet kodu napisany w javie do operacji w MongoDB znajduje się [tutaj](https://github.com/jnowicki/NoSQL-JN/blob/master/1c.java).
+
+![1cFreq](screenshots/1cFreq.png) <br />
+Przykładowe dane wyjściowe dla częstotliwości wystąpień tagów.
+
+![1cUniq](screenshots/1cUniq.png) <br />
+Tutaj unikalne tagi.
+
+![ScriptCzas](screenshots/ScriptCzas.png) <br />
+Czas wykonania. 5 minut 21 sekund na 6034196 rekordów.
+ 
 
 ## 1d
 
