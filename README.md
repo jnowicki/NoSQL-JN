@@ -11,6 +11,8 @@ Zadanie nr1, test użycia MongoDB ze storage MMAP i WiredTiger - Jakub Nowicki
 * MongoDB w wersji 2.8.0 rc0 (główna)
 * MongoDB w wersji 2.6.5 (do porównania)
 * PostgreSQL w wersji 9.3.5
+* NetBeans IDE 7.3.1
+* Windows PowerShell
 
 # Zadania
 ## 1a
@@ -96,7 +98,7 @@ Koniec.
 
 Czas importu wyniósł 12 minut 6 sekund.
 
-## 1b
+## 1b i rozmiar bazy
 
 ### MongoDB 2.6.5 i 2.8.0 rc0 MMS/WiredTiger
 
@@ -127,6 +129,22 @@ Podgląd do kolekcji system.profile dał mi czas wykonania count'a.
 ![WTcountczas](screenshots/WTcountczas.png) <br />
 58 ms
 
+Rozmiar bazy sprawdziłem za pomocą komendy:
+
+~~~
+db.trains.stats()
+~~~
+
+2.6.5:
+![2.6dbstats](screenshots/2.6dbstats.png) <br />
+
+2.8.0 MMS:
+![MMSdbstats](screenshots/MMSdbstats.png) <br />
+
+2.8.0 WiredTiger:
+![WTdbstats](screenshots/WTdbstats.png) <br />
+
+
 ### PostgreSQL
 
 W postgresie użyłem zapytania:
@@ -135,12 +153,22 @@ W postgresie użyłem zapytania:
 
 Pomiar czasu uzyskałem tak samo jak przy imporcie. Zapytanie trwało 5 minut 13 sekund. O wiele więcej niż przy MongoDB w każdej wersji.
 
-### Tabelka i podsumowanie
+Rozmiar bazy sprawdziłem za pomocą komendy:
 
-|        | MongoDB 2.6.5 | MongoDB 2.8.0 | Mongo DB WiredTiger | PostgreSQL  |
-|--------|---------------|---------------|---------------------|-------------|
-| Import | 29min 22sec   | 32min 15sec   | 9min 49sec          | 12min 6sec |
-| Count  | 48 ms         | 44 ms         | 58 ms               | 5min 13sec  |
+~~~
+select pg_relation_size('trains');
+~~~
+
+![PGdbsize](screenshots/PGdbsize.png) <br />
+
+### Tabelka podsumowująca
+
+|                     | Import      | Count    | Size     |
+|---------------------|-------------|----------|----------|
+| MongoDB 2.6.5       | 29min 22sec | 48 ms    | 10.24 gb |
+| MongoDB 2.8.0       | 32min 15sec | 44 ms    | 10.24 gb |
+| Mongo DB WiredTiger | 9min 49sec  | 58 ms    |  6.96 gb |
+| PostgreSQL          | 43min 22sec | 71000 ms |  5.12 gb |
 
 ## 1c
 
