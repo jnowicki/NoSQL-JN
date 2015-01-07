@@ -190,10 +190,69 @@ Czas wykonania. 5 minut 21 sekund na 6034196 rekordów.
 
 [Największe zamorskie bazy wojskowe USA](maps/locMap.geojson)
 
-Bazy wojskowe znajdujące się w azji:
+
+### 1d.1
+
+[Bazy wojskowe znajdujące się w azji:](maps/query1.geojson)
 
 ~~~
 db.bases.find({ loc:{ $geoWithin: { $polygon: [[26.183423,39.377432],[48.331860,44.222196],[51.408032,69.166769],[99.381494,77.043528],[154.343901,68.276608],[153.289213,39.111101],[80.515777,0.722614],[42.091626,13.251471],[25.983423,40.053501],[26.183423,39.377432]]}}})
+~~~
+
+### 1d.2
+
+Bazy wojskowe posortowane wedlug odleglosci od Washingtonu:
+
+~~
+var washington = {type: "Point", coordinates: [-77.0367, 38.8951]}
+db.places.find({ loc : {$near: {$geometry: washington}}})
+~~
+
+<br / >[!query2](screenshots/query2.png) <br />
+
+### 1d.3
+
+[Bazy wojskowe znajdujące się w promieniu 2500km od Tehranu, Iran:](maps/query3.geojson)
+
+~~~
+> db.places.find({ loc: {$near : {$geometry: {type: "Point", coordinates: [51.4231, 35.6961]}, $maxDistance: 2500000}}})
+{ "_id" : "Balad", "loc" : { "type" : "Point", "coordinates" : [ 44.361572, 33.958 ] } }
+{ "_id" : "Manas", "loc" : { "type" : "Point", "coordinates" : [ 74.466, 43.049 ] } }
+{ "_id" : "Bezmer", "loc" : { "type" : "Point", "coordinates" : [ 26.352219, 42.454 ] } }
+~~~
+
+### 1d.4
+
+[Zapytanie z użyciem $center i $geoWithin.](maps/query4.geojson)
+
+~~~
+> db.places.find( { loc: {$geoWithin : {$center: [[77.08, 28.7483], 45]}} })
+{ "_id" : "Balad", "loc" : { "type" : "Point", "coordinates" : [ 44.361572, 33.958 ] }
+{ "_id" : "Manas", "loc" : { "type" : "Point", "coordinates" : [ 74.466, 43.049 ] } }
+{ "_id" : "Diego", "loc" : { "type" : "Point", "coordinates" : [ 72.407, -7.305 ] } }
+~~~
+
+### 1d.5
+
+[Zapytanie z użyciem $box i $geoWithin.](maps/query5.geojson)
+
+~~~
+> db.places.find( { loc: {$geoWithin : {$box: [[-84.9023, 55.2743], [58.1834, -12.0394]]}} })
+{ "_id" : "Balad", "loc" : { "type" : "Point", "coordinates" : [ 44.361572, 33.958 ] } }
+{ "_id" : "Bezmer", "loc" : { "type" : "Point", "coordinates" : [ 26.352219, 42.454 ] } }
+{ "_id" : "Guantanamo", "loc" : { "coordinates" : [ -75.209, 19.908 ], "type" : "Point" } }
+~~~
+
+### 1d.6
+
+[Zapytanie z użyciem $polygon i $geoWithin.](maps/query6.geojson)
+
+~~~
+> db.places.find( { loc: {$geoWithin : {$polygon : [[19.072, 54.213],[96.679, 47.279],[53.964, 8.9284],[0.7031, 18.812],
+[19.072, 54.213]]}} })
+{ "_id" : "Balad", "loc" : { "type" : "Point", "coordinates" : [ 44.361572, 33.958 ] } }
+{ "_id" : "Bezmer", "loc" : { "type" : "Point", "coordinates" : [ 26.352219, 42.454 ] } }
+{ "_id" : "Manas", "loc" : { "type" : "Point", "coordinates" : [ 74.466, 43.049 ] } }
 ~~~
 
 
