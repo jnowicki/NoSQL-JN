@@ -117,15 +117,15 @@ Podgląd do kolekcji system.profile dał mi czas wykonania count'a.
 >db.system.profile.find().limit(10).sort( { ts : -1 } ).pretty()
 ~~~
 
-2.6.5:
+2.6.5: <br />
 ![2.6countczas](screenshots/2.6countczas.png) <br />
 48 ms
 
-2.8.0 MMS:
+2.8.0 MMS: <br />
 ![MMScountczas](screenshots/MMScountczas.png) <br />
 44 ms
 
-2.8.0 WiredTiger:
+2.8.0 WiredTiger: <br />
 ![WTcountczas](screenshots/WTcountczas.png) <br />
 58 ms
 
@@ -135,13 +135,15 @@ Rozmiar bazy sprawdziłem za pomocą komendy:
 db.trains.stats()
 ~~~
 
-2.6.5:
+co wyświetliło mi rozmiar bazy w bajtach, które przekonwertowałem na coś sensowniejszego.
+
+2.6.5: <br />
 ![2.6dbstats](screenshots/2.6dbstats.png) <br />
 
-2.8.0 MMS:
+2.8.0 MMS: <br />
 ![MMSdbstats](screenshots/MMSdbstats.png) <br />
 
-2.8.0 WiredTiger:
+2.8.0 WiredTiger: <br />
 ![WTdbstats](screenshots/WTdbstats.png) <br />
 
 
