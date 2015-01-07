@@ -203,12 +203,12 @@ db.bases.find({ loc:{ $geoWithin: { $polygon: [[26.183423,39.377432],[48.331860,
 
 Bazy wojskowe posortowane wedlug odleglosci od Washingtonu:
 
-~~
+~~~
 var washington = {type: "Point", coordinates: [-77.0367, 38.8951]}
 db.places.find({ loc : {$near: {$geometry: washington}}})
-~~
+~~~
 
-<br / >[!query2](screenshots/query2.png) <br />
+<br / >![query2](screenshots/query2.png) <br />
 
 ### 1d.3
 
